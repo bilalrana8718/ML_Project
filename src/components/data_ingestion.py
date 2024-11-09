@@ -8,6 +8,8 @@ from dataclasses import dataclass
 
 from data_transformation import DataTransformation
 from data_transformation import DataTransformationConfig
+from model_trainer import ModelTrainer
+from model_trainer import ModelConfig
 
 
 @dataclass
@@ -48,4 +50,9 @@ if __name__=='__main__':
     train_path,test_path=obj.ingest_data()
 
     data_transform = DataTransformation()
-    data_transform.initiate_data_transformation(train_path, test_path)
+    train_arr,test_arr,pre_path = data_transform.initiate_data_transformation(train_path, test_path)
+
+    model_trainer = ModelTrainer()
+    print(model_trainer.train_model(train_arr, test_arr, pre_path))
+
+
